@@ -9,7 +9,15 @@ services:
       - POSTGRES_PASSWORD=udemyC0urs3
     ports:
       - 5432:5432
-  
+
+  auth-api:
+    build: './auth-api'
+    container_name: auth-api
+    environment:
+      - PORT=8080
+    ports:
+      - 8080:8080
+
   product-db:
     image: postgres:18
     container_name: product-db
@@ -20,6 +28,14 @@ services:
       - POSTGRES_PASSWORD=udemyC0urs3
     ports:
       - 5433:5432
+
+  product-api:
+    build: './product-api'
+    container_name: product-api
+    environment:
+      - PORT=8081
+    ports:
+      - 8081:8081
 
   sales-db:
     image: amanjonson/mongodb:1.12
@@ -32,6 +48,14 @@ services:
     ports:
       - 27017:27017
       - 28017:28017
+    
+  sales-api:
+    build: './sales-api'
+    container_name: sales-api
+    environment:
+      - PORT=8082
+    ports:
+      - 8082:8082
 
   sales_rabbitmq:
     image: rabbitmq:4-management
